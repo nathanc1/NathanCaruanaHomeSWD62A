@@ -2,6 +2,7 @@
 using ShoppingCart.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ShoppingCart.Data.Context
@@ -14,8 +15,9 @@ namespace ShoppingCart.Data.Context
 
         }
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Category> Category { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

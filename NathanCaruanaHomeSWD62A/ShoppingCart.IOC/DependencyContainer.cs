@@ -1,17 +1,20 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.Services;
+using ShoppingCart.Data.Context;
 using ShoppingCart.Data.Repositories;
 using ShoppingCart.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
 
 namespace ShoppingCart.IOC
 {
     public class DependencyContainer
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegisterServices(IServiceCollection services, string connectionString)
         {
             //when are the instances trigerred??
             //as soon as the application starts?
@@ -26,7 +29,8 @@ namespace ShoppingCart.IOC
             Scoped: IoC container will create an instance of the specified service type once per request and will be shared in a single request.
             */
 
-
+            services.AddDbContext<ShoppingCartDBContext>(options =>
+            options.UseSqlServer(connectionString));
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductsService, ProductsService>();

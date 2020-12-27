@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCart.Data.Context;
 
 namespace ShoppingCart.Data.Migrations
 {
     [DbContext(typeof(ShoppingCartDBContext))]
-    partial class ShoppingCartDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201227195402_InitialMigrationWithGuid2")]
+    partial class InitialMigrationWithGuid2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

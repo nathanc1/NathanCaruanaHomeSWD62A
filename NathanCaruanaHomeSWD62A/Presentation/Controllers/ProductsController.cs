@@ -30,5 +30,11 @@ namespace Presentation.Controllers
 
             return View(list);
         }
+        public IActionResult Details(Guid id)
+        {
+           var myProduct = _productsService.GetProduct(id);
+            return View(myProduct);
+
+        }
     }
 }

@@ -63,5 +63,14 @@ namespace ShoppingCart.Application.Services
 
             _productsRepo.AddProduct(p);
         }
+
+        public void DeleteProduct(Guid id)
+        {
+            if (_productsRepo.GetProduct(id) != null)
+            {
+                _productsRepo.DeleteProduct(id);
+            }
+        }
+
     }
 }

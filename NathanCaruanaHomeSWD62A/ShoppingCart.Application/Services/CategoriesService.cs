@@ -23,11 +23,10 @@ namespace ShoppingCart.Application.Services
                        select new CategoryViewModel()
                        {
                            Id = p.Id,
-                           Name = p.Name,
-                             
-
+                           Name = p.Name
                        };
             return list;
         }
+
     }
 }

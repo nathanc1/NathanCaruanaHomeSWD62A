@@ -12,16 +12,19 @@ namespace Presentation.Controllers
     public class ProductsController : Controller
     {
         private IProductsService _productsService;
-        public ProductsController(IProductsService productsService)
-
-
+        private ICategoriesService _categoriesService;
+        public ProductsController(IProductsService productsService, 
+               ICategoriesService categoriesService)
         {
             _productsService = productsService;
+            _categoriesService = categoriesService;
         }
+
         /// <summary>
         /// Products catalogue
         /// </summary>
         /// <returns></returns>
+        
         public IActionResult Index()
         {
             //IQUERYABLE
@@ -37,27 +40,47 @@ namespace Presentation.Controllers
             return View(myProduct);
 
         }
-        [HttpGet]
+        [HttpGet] //the get method will load the page with blank fields
         public IActionResult Create()
         {
-            return View();
+            var catList = _categoriesService.GetCategories();
+
+            ViewBag.Categories = catList;
+
+            return View(); //model => ProductViewModel
         }
         [HttpPost]
-        public IActionResult Create(ProductViewModel data)
+        public IActionResult Create(ProductViewModel data) //the post method is called when the user clicks on the submit button
         {
+            //validation
             try
             {
                 _productsService.AddProduct(data);
                 ViewData["feedback"] = "Product was added successfully";
                 ModelState.Clear();
-                           
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                //log errors
                 ViewData["warning"] = "Product was not added Check your details";
             }
+
+            var catList = _categoriesService.GetCategories();
+
+            ViewBag.Categories = catList;
+
             return View();
         }
+        
+        public IActionResult Delete(Guid id)
+        {
+            _productsService.DeleteProduct(id);
+            TempData["feedback"] = "Product was delete successfully"; //change wherever we are using viewdata to use tempdata
+            return RedirectToAction("Index");
+        }
+
+        
 
     }
 }

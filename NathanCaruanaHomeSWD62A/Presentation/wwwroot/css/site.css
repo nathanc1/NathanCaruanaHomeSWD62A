@@ -75,10 +75,10 @@ body {
     -----------------------------------------
 */
 .card {
-    height: 2103px;
-    box-shadow: 10px 7px 3px -5px rgba(0,0,0,0.75);
+    height: 150px;
+ 
 }
 .card-img-top{
     width: 100%;
-    height: 15vw;
+    height: 5vw;
 }

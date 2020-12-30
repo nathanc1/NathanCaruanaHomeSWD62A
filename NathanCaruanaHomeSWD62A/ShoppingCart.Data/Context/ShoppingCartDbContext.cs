@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Domain.Model;
+using ShoppingCart.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace ShoppingCart.Data.Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-      
+
+        public DbSet<Member> Members { get; set; }      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

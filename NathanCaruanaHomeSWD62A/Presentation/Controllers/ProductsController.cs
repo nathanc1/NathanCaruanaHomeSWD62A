@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,8 @@ namespace Presentation.Controllers
 
         }
         [HttpGet] //the get method will load the page with blank fields
+        [Authorize(Roles ="Admin")] //Authorize vs Authorize(Roles="Admin")
+                                    //Authorize Authorizes anyone who is logged in, Authorize(Roles="Admin") authorizes only admin
         public IActionResult Create()
         {
             var catList = _categoriesService.GetCategories();
@@ -54,6 +57,7 @@ namespace Presentation.Controllers
             return View(); //model => ProductViewModel
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(ProductViewModel data, IFormFile file) //the post method is called when the user clicks on the submit button
         {
             //validation
@@ -91,7 +95,7 @@ namespace Presentation.Controllers
 
             return View();
         }
-        
+
         public IActionResult Delete(Guid id)
         {
             _productsService.DeleteProduct(id);

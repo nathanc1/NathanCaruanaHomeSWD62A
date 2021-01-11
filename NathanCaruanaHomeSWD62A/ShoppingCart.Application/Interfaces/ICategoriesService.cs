@@ -8,9 +8,7 @@ namespace ShoppingCart.Application.Interfaces
 {
     public interface ICategoriesService
     {
+
         IQueryable<CategoryViewModel> GetCategories();
-
-
-
     }
 }

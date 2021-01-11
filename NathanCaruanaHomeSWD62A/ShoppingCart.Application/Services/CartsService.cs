@@ -10,12 +10,11 @@ namespace ShoppingCart.Application.Services
 {
     public class CartsService : ICartsService
     {
-        private ICartsRepository _cartRepo;
-        public CartsService(ICartsRepository cartRepo)
+        private ICartsRepository _cartsRepo;
+        public CartsService(ICartsRepository cartsRepo)
         {
-            _cartRepo = cartRepo;
+            _cartsRepo = cartsRepo;
         }
-
         public void AddCart(CartViewModel data)
         {
             throw new NotImplementedException();

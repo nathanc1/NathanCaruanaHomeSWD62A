@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoppingCart.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,7 +15,13 @@ namespace ShoppingCart.Domain.Models
         [Required]
         public int quantity { get; set; }
 
+        [Required]
+        public string email { get; set; }
+
+        [Required]
+        public virtual Product Product { get; set; }
+
         [ForeignKey("Product")]
-        public int productId { get; set; }
+        public Guid productId { get; set; }
     }
 }

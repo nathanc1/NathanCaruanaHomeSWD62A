@@ -18,13 +18,13 @@ namespace ShoppingCart.Data.Repositories
 
         public void AddCart(Cart c)
         {
-            _context.Cart.Add(c);
+            _context.Carts.Add(c);
             _context.SaveChanges();
         }
 
         public IQueryable<Cart> GetProducts()
         {
-            return _context.Cart;
+            return _context.Carts;
         }
     }
 }

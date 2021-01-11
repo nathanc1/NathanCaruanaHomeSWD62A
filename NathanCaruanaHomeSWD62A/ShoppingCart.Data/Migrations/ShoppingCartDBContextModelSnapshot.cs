@@ -73,15 +73,21 @@ namespace ShoppingCart.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("productId")
-                        .HasColumnType("int");
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("productId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cart");
+                    b.HasIndex("productId");
+
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("ShoppingCart.Domain.Models.Member", b =>
@@ -105,6 +111,15 @@ namespace ShoppingCart.Data.Migrations
                     b.HasOne("ShoppingCart.Domain.Model.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ShoppingCart.Domain.Models.Cart", b =>
+                {
+                    b.HasOne("ShoppingCart.Domain.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("productId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

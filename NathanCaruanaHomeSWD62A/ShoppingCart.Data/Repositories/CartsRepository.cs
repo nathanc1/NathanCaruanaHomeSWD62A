@@ -22,7 +22,7 @@ namespace ShoppingCart.Data.Repositories
             _context.SaveChanges();
         }
 
-        public IQueryable<Cart> GetProducts()
+        public IQueryable<Cart> GetCart()
         {
             return _context.Carts;
         }

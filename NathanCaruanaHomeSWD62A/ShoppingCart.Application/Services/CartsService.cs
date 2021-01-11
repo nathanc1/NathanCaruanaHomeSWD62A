@@ -1,6 +1,7 @@
 ﻿using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.ViewModels;
 using ShoppingCart.Domain.Interfaces;
+using ShoppingCart.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,19 @@ namespace ShoppingCart.Application.Services
         {
             _cartsRepo = cartsRepo;
         }
-        public void AddCart(CartViewModel data)
+
+        public void AddCart(CartViewModel data, string email)
         {
-            throw new NotImplementedException();
+            Cart c = new Cart();
+     
+            c.quantity = 0;
+            c.email = email;
+            c.productId = data.Id;
+
+            _cartsRepo.AddCart(c);
         }
 
-        public IQueryable<CartViewModel> GetProducts()
+        public IQueryable<CartViewModel> GetCart()
         {
             throw new NotImplementedException();
         }

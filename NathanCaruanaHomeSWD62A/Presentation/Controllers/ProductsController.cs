@@ -15,13 +15,15 @@ namespace Presentation.Controllers
     public class ProductsController : Controller
     {
         private IProductsService _productsService;
+        private ICartsService _cartsService;
         private ICategoriesService _categoriesService;
         private IWebHostEnvironment _env;
         public ProductsController(IProductsService productsService, 
-               ICategoriesService categoriesService, IWebHostEnvironment env)
+               ICategoriesService categoriesService,ICartsService cartsService, IWebHostEnvironment env)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
+            _cartsService = cartsService;
             _env = env;
         }
 
@@ -103,7 +105,16 @@ namespace Presentation.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public IActionResult AddToCart(CartViewModel data, string email)
+        {
+            email = User.Identity.Name;
+
+            _cartsService.AddCart(data,email);
+            TempData["feedback"] = "MY CART"; //change wherever we are using viewdata to use tempdata
+            return RedirectToAction("Index");
+        }
+
+
 
     }
 }

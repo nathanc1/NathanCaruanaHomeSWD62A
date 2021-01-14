@@ -30,9 +30,9 @@ namespace ShoppingCart.Application.Services
             myViewModel.Category = new CategoryViewModel();
             myViewModel.Category.Id = productFromDb.Category.Id;
             myViewModel.Category.Name = productFromDb.Category.Name;
-
             return myViewModel;
         }
+
 
         public IQueryable<ProductViewModel> GetProducts()
         {
@@ -49,7 +49,6 @@ namespace ShoppingCart.Application.Services
                        };
             return list;
         }
-
         public void AddProduct(ProductViewModel data)
         {
             // ProductViewModel ======> Product

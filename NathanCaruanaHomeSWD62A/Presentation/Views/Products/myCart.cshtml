@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ShoppingCart.Application.ViewModels.CartViewModel>
+
+@{
+    ViewData["Title"] = "myCart";
+}
+
+<h1>myCart</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    if (item.email == User.Identity.Name)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+ 
+        </tr>
+        }
+    }
+    </tbody>
+</table>

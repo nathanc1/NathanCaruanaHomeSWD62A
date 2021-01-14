@@ -10,5 +10,7 @@ namespace ShoppingCart.Domain.Interfaces
     {
         void AddCart(Cart c);
         IQueryable<Cart> GetCart();
+
+        Cart GetProduct(Guid id);
     }
 }

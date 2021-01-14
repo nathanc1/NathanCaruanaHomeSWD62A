@@ -114,7 +114,13 @@ namespace Presentation.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult myCart(CartViewModel data, string email)
+        {
+            email = User.Identity.Name;
 
+            var list = _cartsService.GetCart(data,email);
 
+            return View(list);
+        }
     }
 }

@@ -17,20 +17,38 @@ namespace ShoppingCart.Application.Services
             _cartsRepo = cartsRepo;
         }
 
+
         public void AddCart(CartViewModel data, string email)
         {
-            Cart c = new Cart();
-     
-            c.quantity = 0;
-            c.email = email;
-            c.productId = data.Id;
 
+            Cart c = new Cart();
+            c.productId = data.Id;
+            c.quantity = 1;
+            c.email = email;
             _cartsRepo.AddCart(c);
         }
 
-        public IQueryable<CartViewModel> GetCart()
+        public IQueryable<CartViewModel> GetCart(CartViewModel data, string email)
         {
-            throw new NotImplementedException();
+            var list = from c in _cartsRepo.GetCart()
+                       select new CartViewModel()
+                       {
+                           Id = c.Id,
+                           email = c.email,
+                           quantity = c.quantity,
+                           Product = new ProductViewModel() {Id = c.Product.Id, Name = c.Product.Name}
+                       };
+            return list;
+        }
+
+        public CartViewModel GetProduct(Guid id)
+        {
+            CartViewModel myViewModel = new CartViewModel();
+            var productFromDb = _cartsRepo.GetProduct(id);
+
+            myViewModel.Product.Id = productFromDb.Product.Id;
+            myViewModel.Product.Name = productFromDb.Product.Name;
+            return myViewModel;
         }
     }
 }

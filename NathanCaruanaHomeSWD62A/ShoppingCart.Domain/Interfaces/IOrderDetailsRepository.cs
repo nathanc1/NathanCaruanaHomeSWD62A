@@ -6,11 +6,8 @@ using System.Text;
 
 namespace ShoppingCart.Domain.Interfaces
 {
-    public interface ICartsRepository
+    public interface IOrderDetailsRepository
     {
-        void AddCart(Cart c);
-        IQueryable<Cart> GetCart();
-
-        Cart GetProduct(Guid id,string name);
+        void AddOrderDetails(OrderDetails od);
     }
 }

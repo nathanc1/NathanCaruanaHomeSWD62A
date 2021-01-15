@@ -45,8 +45,7 @@ namespace ShoppingCart.IOC
             services.AddScoped<ICartsService, CartsService>();
 
 
-
-
+           
         }
     }
 }

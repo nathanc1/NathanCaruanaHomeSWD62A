@@ -16,18 +16,15 @@ namespace ShoppingCart.Application.Services
         {
             _cartsRepo = cartsRepo;
         }
-
-
         public void AddCart(CartViewModel data, string email)
         {
 
-            Cart c = new Cart();
-            c.productId = data.Id;
-            c.quantity = 1;
-            c.email = email;
-            _cartsRepo.AddCart(c);
+                Cart c = new Cart();
+                c.productId = data.Id;
+                c.email = email;
+                c.quantity = 1;
+                _cartsRepo.AddCart(c);       
         }
-
         public IQueryable<CartViewModel> GetCart(CartViewModel data, string email)
         {
             var list = from c in _cartsRepo.GetCart()
@@ -41,13 +38,13 @@ namespace ShoppingCart.Application.Services
             return list;
         }
 
-        public CartViewModel GetProduct(Guid id)
+        public CartViewModel GetProduct(Guid id, string email)
         {
             CartViewModel myViewModel = new CartViewModel();
-            var productFromDb = _cartsRepo.GetProduct(id);
+            var productFromDb = _cartsRepo.GetProduct(id, email);
 
             myViewModel.Product.Id = productFromDb.Product.Id;
-            myViewModel.Product.Name = productFromDb.Product.Name;
+            myViewModel.email = productFromDb.email;
             return myViewModel;
         }
     }

@@ -20,12 +20,10 @@ namespace ShoppingCart.Data.Repositories
             _context.Carts.Add(c);
             _context.SaveChanges();
         }
-        public Cart GetProduct(Guid id)
+        public Cart GetProduct(Guid id,string name)
         {
-            return _context.Carts.SingleOrDefault(x => x.Product.Id == id);
-            //if it does not find a product with a matching id... it will return null!!
+            return _context.Carts.SingleOrDefault(x => x.Product.Id == id && x.Product.Name == name);
         }
-
         public IQueryable<Cart> GetCart()
         {
             return _context.Carts;

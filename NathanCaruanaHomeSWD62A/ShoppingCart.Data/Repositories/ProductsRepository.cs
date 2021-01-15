@@ -37,7 +37,6 @@ namespace ShoppingCart.Data.Repositories
 
         public IQueryable<Product> GetProducts()
         {
-    
             return _context.Products;
         }
     }

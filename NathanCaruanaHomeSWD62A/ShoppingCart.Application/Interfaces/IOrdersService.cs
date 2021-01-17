@@ -9,6 +9,6 @@ namespace ShoppingCart.Application.Interfaces
     public interface IOrdersService
     {
         //  void Checkout(List<Product>productsInCart);
-        void AddOrder(OrderViewModel o);
+        void AddOrder(OrderViewModel o, string email);
     }
 }

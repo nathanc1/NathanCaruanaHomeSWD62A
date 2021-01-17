@@ -20,5 +20,15 @@ namespace ShoppingCart.Data.Repositories
             _context.OrderDetails.Add(od);
             _context.SaveChanges();
         }
+
+        public OrderDetails GetOrder(Guid id)
+        {
+            return _context.OrderDetails.SingleOrDefault(x => x.Order.Id == id);
+        }
+
+        public IQueryable<OrderDetails> GetProdsCart(Guid id, string email)
+        {
+            return _context.OrderDetails;
+        }
     }
 }

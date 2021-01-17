@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingCart.Application.AutoMapper;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.Services;
 using ShoppingCart.Data.Context;
@@ -44,8 +46,15 @@ namespace ShoppingCart.IOC
             services.AddScoped<ICartsRepository, CartsRepository>();
             services.AddScoped<ICartsService, CartsService>();
 
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IOrdersService, OrdersService>();
 
-           
+            services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
+            services.AddScoped<IOrderDetailsService, OrderDetailsService>();
+
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
+            AutoMapperConfiguration.RegisterMappings();
+            //register the profiles with any instances of the automapper
         }
     }
 }

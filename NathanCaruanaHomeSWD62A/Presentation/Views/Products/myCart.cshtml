@@ -21,19 +21,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    if (item.email == User.Identity.Name)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.quantity)
-            </td>
- 
-        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.email == User.Identity.Name)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+
+                </tr>
+            }
+
         }
-    }
+
+
+
+
+
+
     </tbody>
 </table>
+<a href="/Products/Checkout/" class="btn btn-danger">checkout</a>

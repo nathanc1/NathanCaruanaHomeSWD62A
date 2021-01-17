@@ -9,5 +9,11 @@ namespace ShoppingCart.Domain.Interfaces
     public interface IOrderDetailsRepository
     {
         void AddOrderDetails(OrderDetails od);
+
+
+        OrderDetails GetOrder(Guid id);
+
+        IQueryable <OrderDetails>GetProdsCart(Guid id, string email);
+
     }
 }

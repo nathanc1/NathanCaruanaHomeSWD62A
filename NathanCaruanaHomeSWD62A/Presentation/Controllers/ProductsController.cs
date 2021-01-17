@@ -16,14 +16,18 @@ namespace Presentation.Controllers
     {
         private IProductsService _productsService;
         private ICartsService _cartsService;
+        private IOrdersService _ordersService;
+        private IOrderDetailsService _orderDetailsService;
         private ICategoriesService _categoriesService;
         private IWebHostEnvironment _env;
         public ProductsController(IProductsService productsService, 
-               ICategoriesService categoriesService,ICartsService cartsService, IWebHostEnvironment env)
+               ICategoriesService categoriesService,ICartsService cartsService, IOrdersService ordersService, IOrderDetailsService orderDetailsService ,IWebHostEnvironment env)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
             _cartsService = cartsService;
+            _ordersService = ordersService;
+            _orderDetailsService = orderDetailsService;
             _env = env;
         }
 
@@ -105,6 +109,7 @@ namespace Presentation.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult AddToCart(CartViewModel data, string email)
         {
             email = User.Identity.Name;
@@ -114,6 +119,7 @@ namespace Presentation.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult myCart(CartViewModel data, string email)
         {
             email = User.Identity.Name;
@@ -121,6 +127,16 @@ namespace Presentation.Controllers
             var list = _cartsService.GetCart(data,email);
 
             return View(list);
+        }
+
+        public IActionResult checkout(OrderViewModel data, OrderDetailViewModel od ,string email)
+        {
+            email = User.Identity.Name;
+
+            _ordersService.AddOrder(data,email);
+            _orderDetailsService.AddOrderDetails(od);
+            TempData["feedback"] = "MY CART"; //change wherever we are using viewdata to use tempdata
+            return RedirectToAction("Index");
         }
     }
 }

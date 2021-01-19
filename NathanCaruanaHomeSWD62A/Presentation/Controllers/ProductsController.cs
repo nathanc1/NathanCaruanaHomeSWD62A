@@ -110,11 +110,12 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = "User")]
-        public IActionResult AddToCart(CartViewModel data, string email)
+        public IActionResult AddToCart(Guid id,string email,int qty)
         {
             email = User.Identity.Name;
 
-            _cartsService.AddCart(data,email);
+         
+            _cartsService.AddCart(id, email,qty);
             TempData["feedback"] = "MY CART"; //change wherever we are using viewdata to use tempdata
             return RedirectToAction("Index");
         }

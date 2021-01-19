@@ -20,13 +20,19 @@ namespace ShoppingCart.Data.Repositories
             _context.Carts.Add(c);
             _context.SaveChanges();
         }
-        public Cart GetProduct(Guid id,string name)
+        public Cart GetCart(Guid id,string email)
         {
-            return _context.Carts.SingleOrDefault(x => x.Product.Id == id && x.Product.Name == name);
+            return _context.Carts.SingleOrDefault(x => x.Product.Id == id && x.email == email);
         }
-        public IQueryable<Cart> GetCart()
+        public IQueryable<Cart> GetCarts()
         {
             return _context.Carts;
+        }
+
+        public void UpdateCart(Cart cart)
+        {
+            _context.Update(cart);
+            _context.SaveChanges();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ShoppingCart.Application.ViewModels
 
         public int quantity { get; set; }
 
-        public int productId { get; set; }
+        public Guid productId { get; set; }
 
         public string email { get; set; }
 

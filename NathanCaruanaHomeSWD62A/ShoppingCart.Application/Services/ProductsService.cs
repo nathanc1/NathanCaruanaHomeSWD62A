@@ -20,7 +20,6 @@ namespace ShoppingCart.Application.Services
             _productsRepo = productsRepo;
             _mapper = mapper;
         }
-
         public ProductViewModel GetProduct(Guid id)
         {
             Product product = _productsRepo.GetProduct(id);
@@ -41,8 +40,6 @@ namespace ShoppingCart.Application.Services
         */
 
         }
-
-
         public IQueryable<ProductViewModel> GetProducts()
         {
             return _productsRepo.GetProducts().ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider);

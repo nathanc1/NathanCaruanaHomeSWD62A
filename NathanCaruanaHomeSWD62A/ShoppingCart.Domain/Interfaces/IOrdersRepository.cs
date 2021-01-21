@@ -10,6 +10,7 @@ namespace ShoppingCart.Domain.Interfaces
     {
        void AddOrder(Order o);
 
-     
+        
+
     }
 }

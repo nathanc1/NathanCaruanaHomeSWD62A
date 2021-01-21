@@ -54,7 +54,6 @@ namespace ShoppingCart.Application.Services
                            Product = new ProductViewModel() {Id = c.Product.Id, Name = c.Product.Name}
                        };
             return list;
-          
         }
         
         public CartViewModel GetCarts(Guid id, string email)
@@ -73,13 +72,10 @@ namespace ShoppingCart.Application.Services
         public void UpdateQtyInCart(string email, Guid ProductId, int qty)
         {
             //1. fetch the row from the carts table that belong to the email
-
-            
             Cart originalCart = _cartsRepo.GetCart(ProductId, email);
-
             originalCart.quantity += qty+1;
-
             _cartsRepo.UpdateCart(originalCart);
         }
     }
 }
+  

@@ -10,5 +10,7 @@ namespace ShoppingCart.Application.Interfaces
     {
         //  void Checkout(List<Product>productsInCart);
         void AddOrder(OrderViewModel o, string email);
+
+    
     }
 }

@@ -10,9 +10,7 @@ namespace ShoppingCart.Domain.Interfaces
     {
         void AddOrderDetails(OrderDetails od);
 
-
-        OrderDetails GetOrder(Guid id);
-
+        IQueryable<OrderDetails> GetOrder(Guid id, string email);
         IQueryable <OrderDetails>GetProdsCart(Guid id, string email);
 
     }

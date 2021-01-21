@@ -14,38 +14,31 @@ namespace ShoppingCart.Application.Services
     public class OrderDetailsService : IOrderDetailsService
     {
         private IOrderDetailsRepository _ordersDetailsRepo;
+        private IOrdersRepository _ordersRepository;
         private IMapper _mapper;
-        public OrderDetailsService(IOrderDetailsRepository orderDetailsRepo, IMapper mapper)
+        public OrderDetailsService(IOrderDetailsRepository orderDetailsRepo, IOrdersRepository ordersRepo, IMapper mapper)
         {
             _ordersDetailsRepo = orderDetailsRepo;
+            _ordersRepository = ordersRepo;
             _mapper = mapper;
         }
-        public void AddOrderDetails(OrderDetailViewModel data)
+        public void AddOrderDetails(Guid ordid, Guid prodid,string email)
         {
-            OrderDetails ord = new OrderDetails();
+            OrderDetails orderId = _ordersDetailsRepo.GetOrder(ordid, email).First();
 
-            ord.OrderFk = data.Order.Id;
-            ord.ProductFk = data.Product.Id;
-            ord.Quantity = data.Quantity;
-
-
-            _ordersDetailsRepo.AddOrderDetails(ord);
 
             //ord.ProductFk = od.Product.Id;
             //  ord.Quantity = od.Quantity;
         }
-        public OrderDetailViewModel GetOrder(Guid id)
+
+        public IQueryable<OrderDetailViewModel> GetOrder(Guid id, string email)
         {
-            OrderDetails orderDetails = _ordersDetailsRepo.GetOrder(id);
-            var resultingOrderDetailsViewModel = _mapper.Map<OrderDetailViewModel>(orderDetails);
-            return resultingOrderDetailsViewModel;
-
-            /*OrderDetailViewModel myViewModel = new OrderDetailViewModel();
-            var productFromDb = _ordersDetailsRepo.GetOrder(id);
-
-            myViewModel.Order.Id = productFromDb.Order.Id;
-            return myViewModel;
-            */
+            var list = from p in _ordersDetailsRepo.GetOrder(id,email)
+                       select new OrderDetailViewModel()
+                       {    
+                           Order = new OrderViewModel() { Id = id, Email = email}
+                       };
+            return list;
         }
 
         public IQueryable<OrderDetailViewModel> GetProdsCart(Guid id, string email)

@@ -4,14 +4,13 @@
     ViewData["Title"] = "myCart";
 }
 
-<h1>myCart</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>Shopping Cart</h1>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ImageUrl)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product.Name)
             </th>
@@ -26,22 +25,18 @@
             if (item.email == User.Identity.Name)
             {
                 <tr>
+                    <td> 
+                        <img src="@item.Product.ImageUrl" class="card-img-top card-image" alt="@item.Product.Name" style="width:250px;">
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Product.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.quantity)
                     </td>
-
                 </tr>
             }
-
         }
-
-
-
-
-
 
     </tbody>
 </table>

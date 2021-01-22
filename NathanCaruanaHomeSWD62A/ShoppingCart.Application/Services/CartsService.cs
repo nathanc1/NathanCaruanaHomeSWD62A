@@ -51,7 +51,7 @@ namespace ShoppingCart.Application.Services
                            Id = c.Id,
                            email = c.email,
                            quantity = c.quantity,
-                           Product = new ProductViewModel() {Id = c.Product.Id, Name = c.Product.Name}
+                           Product = new ProductViewModel() {Id = c.Product.Id, Name = c.Product.Name, ImageUrl = c.Product.ImageUrl}
                        };
             return list;
         }
@@ -65,6 +65,7 @@ namespace ShoppingCart.Application.Services
             var productFromDb = _cartsRepo.GetCart(id, email);
 
             myViewModel.Product.Id = id;
+            
             return myViewModel;
         }
         

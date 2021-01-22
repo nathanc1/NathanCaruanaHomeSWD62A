@@ -47,9 +47,7 @@ namespace Presentation.Controllers
             try
             {
                 var list = _productsService.GetProducts();
-
                 _logger.LogInformation("Products list worked");
-
                 return View(list); 
             }
             catch(Exception ex)
@@ -81,7 +79,7 @@ namespace Presentation.Controllers
 
                 var catList = _categoriesService.GetCategories();
 
-                 ViewBag.Categories = catList;
+                ViewBag.Categories = catList;
 
                 return View(); //model => ProductViewModel
             }
@@ -113,14 +111,14 @@ namespace Presentation.Controllers
                     }
                 }
                 _productsService.AddProduct(data);
-                ViewData["feedback"] = "Product was added successfully";
+                TempData["feedback"] = "Product was added successfully";
                 ModelState.Clear();
+
 
             }
             catch (Exception)
             {
                 //log errors
-                ViewData["warning"] = "Product was not added Check your details";
                 return RedirectToAction("Error", "home");
             }
 
@@ -138,7 +136,7 @@ namespace Presentation.Controllers
 
 
                 _productsService.DeleteProduct(id);
-                TempData["feedback"] = "Product was delete successfully"; //change wherever we are using viewdata to use tempdata
+                TempData["feedback"] = "Product was deleted successfully"; //change wherever we are using viewdata to use tempdata
                 return RedirectToAction("Index");
             }catch(Exception)
             {
@@ -155,7 +153,7 @@ namespace Presentation.Controllers
                 email = User.Identity.Name;
 
                 _cartsService.AddCart(id, email,qty);
-                TempData["feedback"] = "MY CART"; //change wherever we are using viewdata to use tempdata
+                TempData["feedback"] = "Added To Cart"; //change wherever we are using viewdata to use tempdata
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -189,7 +187,7 @@ namespace Presentation.Controllers
 
                 _ordersService.AddOrder(data, email);
                 _orderDetailsService.AddOrderDetails(ordid, prodId, email);
-                TempData["feedback"] = "MY CART"; //change wherever we are using viewdata to use tempdata
+                TempData["feedback"] = "Checking out succesful"; //change wherever we are using viewdata to use tempdata
                 return RedirectToAction("Index");
             }
             catch (Exception)

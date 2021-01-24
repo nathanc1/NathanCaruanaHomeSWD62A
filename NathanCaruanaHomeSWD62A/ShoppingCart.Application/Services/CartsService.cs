@@ -30,13 +30,11 @@ namespace ShoppingCart.Application.Services
             if (cart == null)
             {
                 qty = 1;
-
                 _cartsRepo.AddCart(new Cart()
                 {
                     email = email,
                     productId = productId,
                     quantity = qty
-
                 });
             }
             else{
@@ -55,7 +53,6 @@ namespace ShoppingCart.Application.Services
                        };
             return list;
         }
-        
         public CartViewModel GetCarts(Guid id, string email)
         {
             //    Cart cart = _cartsRepo.GetProduct(id,email);

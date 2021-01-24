@@ -22,6 +22,5 @@ namespace ShoppingCart.Application.Services
             or.Email = email;
             _ordersRepo.AddOrder(or);
         }
-    
     }
 }

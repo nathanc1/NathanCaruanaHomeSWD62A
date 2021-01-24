@@ -24,8 +24,7 @@ namespace ShoppingCart.Application.Services
         }
         public void AddOrderDetails(Guid ordid, Guid prodid,string email)
         {
-            OrderDetails orderId = _ordersDetailsRepo.GetOrder(ordid, email).First();
-
+            /*OrderDetails orderId = _ordersDetailsRepo.GetOrder(ordid, email);*/
 
             //ord.ProductFk = od.Product.Id;
             //  ord.Quantity = od.Quantity;
@@ -33,10 +32,10 @@ namespace ShoppingCart.Application.Services
 
         public IQueryable<OrderDetailViewModel> GetOrder(Guid id, string email)
         {
-            var list = from p in _ordersDetailsRepo.GetOrder(id,email)
+            var list = from p in _ordersDetailsRepo.GetOrder(id, email)
                        select new OrderDetailViewModel()
-                       {    
-                           Order = new OrderViewModel() { Id = id, Email = email}
+                       {
+                           Order = new OrderViewModel() { Id = p.Order.Id, Email = p.Order.Email}
                        };
             return list;
         }
@@ -51,7 +50,6 @@ namespace ShoppingCart.Application.Services
                            Order = new OrderViewModel() { Id = id, Email = email}
                        };
             return list;
-
             */
         }
     }

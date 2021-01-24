@@ -25,7 +25,6 @@ namespace ShoppingCart.Data.Repositories
         {
             return _context.OrderDetails;
         }
-
         public IQueryable<OrderDetails> GetProdsCart(Guid id, string email)
         {
             return _context.OrderDetails;

@@ -23,9 +23,9 @@ namespace Presentation.Controllers
             try
             {
                 _logger.LogInformation("Index method started");
-                _logger.LogWarning("I am about to throw an error on purpose");
+                
 
-                throw new Exception("this is my error");
+               
             }
             catch(Exception ex)
             {

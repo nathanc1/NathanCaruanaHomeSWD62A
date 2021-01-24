@@ -128,7 +128,7 @@ namespace Presentation.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid id)
         {
             try
